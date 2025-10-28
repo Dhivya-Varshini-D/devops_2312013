@@ -1,0 +1,40 @@
+
+    gettask(req, res) {
+        res.status(200).json(this.courses);
+    }
+
+    gettaskById(req, res) {
+        const taskId = parseInt(req.params.id);
+        const task = this.tasks.find(c => c.id === taskId);
+        if (task) {
+            res.status(200).json(task);
+        } else {
+            res.status(404).json({ message: 'task not found' });
+        }
+    }
+
+    updatetask(req, res) {
+        const taskId = parseInt(req.params.id);
+        const taskIndex = this.tasks.findIndex(c => c.id === taskId);
+        if (taskIndex !== -1) {
+            const { title, description, duration } = req.body;
+            this.task[taskIndex] = { id: taskId, title, description, duration };
+            res.status(200).json(this.tasks[taskIndex]);
+        } else {
+            res.status(404).json({ message: 'task not found' });
+        }
+    }
+
+    deletetask(req, res) {
+        const taskId = parseInt(req.params.id);
+        const taskIndex = this.tasks.findIndex(c => c.id === taskId();
+                if (taskIndex !== -1) {
+            this.tasks.splice(taskIndex, 1);
+            res.status(204).send();
+        } else {
+            res.status(404).json({ message: 'task not found' });
+        }
+    }
+}
+
+export default new taskController();
